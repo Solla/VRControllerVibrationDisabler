@@ -11,6 +11,14 @@
 		{
 			"controller_type": "oculus_touch",
 			"binding_url": "bindings_oculus_touch.json"
+		},
+		{
+			"controller_type": "vive_cosmos_controller",
+			"binding_url": "bindings_vive_cosmos.json"
+		},
+		{
+			"controller_type": "holographic_controller",
+			"binding_url": "bindings_holographic_controller.json"
 		}
 	],
 	"actions": [

@@ -7,6 +7,10 @@ Verified :
 - [X] Valve Index Controller
 - [X] Oculus Touch Controller
 
+Supported, but not verified yet:
+- [ ] HTC Vive Cosmos Controller
+- [ ] Holographic Controller
+
 # Controller Disabler
 Lots of people feel annoyed at the controller vibrating.
 
