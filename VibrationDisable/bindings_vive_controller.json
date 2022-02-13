@@ -142,7 +142,7 @@
    "category" : "steamvr_input",
    "controller_type" : "vive_controller",
    "description" : "Default Vive Controller bindings",
-   "name" : "我為 Vive Controller 設定的 OpenVRInputTest 配置",
+   "name" : "My Vive Controller Configuration For OpenVRInputTest",
    "options" : {},
    "simulated_actions" : []
 }
