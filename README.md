@@ -1,6 +1,11 @@
 # Acknowledgement
 This is a variant from BOLL7708's project [OpenVRInputTest](https://github.com/BOLL7708/OpenVRInputTest) .
 
+## Compatibility
+Verified : 
+- [x] HTC Vive Controller
+- [X] Valve Index Controller
+- [X] Oculus Touch Controller
 
 # Controller Disabler
 Lots of people feel annoyed at the controller vibrating.
