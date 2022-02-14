@@ -10,7 +10,7 @@ namespace OpenVRInputTest
     {
         static ulong mActionSetHandle;
         static VRActiveActionSet_t[] mActionSetArray;
-
+        const int MAX_FPS = 144;
         // # items are referencing this list of actions: https://github.com/ValveSoftware/openvr/wiki/SteamVR-Input#getting-started
         static void Main(string[] args)
         {
@@ -94,6 +94,7 @@ namespace OpenVRInputTest
                 var errorRightVibration = OpenVR.Input.TriggerHapticVibrationAction(RightVibration, 0, 1000, 0, 0, OpenVR.k_ulInvalidInputValueHandle);
                 if (errorRightVibration != EVRInputError.None)
                     Utils.PrintError($"Right Vibration Error: {Enum.GetName(typeof(EVRInputError), errorRightVibration)}");
+                Thread.Sleep(1000 / MAX_FPS);
             }
         }
     }
