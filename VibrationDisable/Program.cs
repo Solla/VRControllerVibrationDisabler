@@ -2,18 +2,30 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Xml.Serialization;
 using Valve.VR;
 //Sources: https://github.com/BOLL7708/OpenVRInputTest
 namespace OpenVRInputTest
 {
+    public class ProcConfig
+    {
+        public int DataUpdateRatePerSec = 333;
+    }
     class Program
     {
         static ulong mActionSetHandle;
         static VRActiveActionSet_t[] mActionSetArray;
-        const int MAX_FPS = 144;
+        const string ConfigFileName = "Configs.xml";
+        static ProcConfig config;
         // # items are referencing this list of actions: https://github.com/ValveSoftware/openvr/wiki/SteamVR-Input#getting-started
         static void Main(string[] args)
         {
+            var _XmlSerializer = new XmlSerializer(typeof(ProcConfig));
+            if (!File.Exists(ConfigFileName))
+                using (var stream = File.Create(ConfigFileName))
+                    _XmlSerializer.Serialize(stream, new ProcConfig());
+            config = (ProcConfig)_XmlSerializer.Deserialize(File.OpenRead(ConfigFileName));
+
             // Initializing connection to OpenVR
             var error = EVRInitError.None;
             OpenVR.Init(ref error, EVRApplicationType.VRApplication_Background); // Had this as overlay before to get it working, but changing it back is now fine?
@@ -94,7 +106,7 @@ namespace OpenVRInputTest
                 var errorRightVibration = OpenVR.Input.TriggerHapticVibrationAction(RightVibration, 0, 1000, 0, 0, OpenVR.k_ulInvalidInputValueHandle);
                 if (errorRightVibration != EVRInputError.None)
                     Utils.PrintError($"Right Vibration Error: {Enum.GetName(typeof(EVRInputError), errorRightVibration)}");
-                Thread.Sleep(1000 / MAX_FPS);
+                Thread.Sleep(1000 / config.DataUpdateRatePerSec);
             }
         }
     }
